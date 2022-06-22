@@ -27,10 +27,16 @@ if (isset($_GET['id'])) {
               <p><?= htmlspecialchars($article['content']); ?></p>
             </article>
             <br>
-            <!-- <form action="edit-article.php?id=<?= $article['id']; ?>">
-              <input type="submit" value="Edit article">
-            </form> -->
             <a href="edit-article.php?id=<?= $article['id']; ?>">Edit article</a>
-
+              <!-- PRÓBOWAŁEM UMIEŚCIĆ BUTTON, ALE NIE MOGĘ ZMUSIĆ GO ŻEBY POBRAŁ ID -->
+            <!-- <form action="edit-article.php?id=<?= $article['id']; ?>" method="get">
+              <button>Edit article</button>
+            </form> -->
+            <br><br>
+            <!-- <form  action="delete-article.php?id=<?= $article['id']; ?>" method="post">
+              <button>Delete article</button>
+            </form> -->
+            <!-- TO DZIAŁA ALE CHCIAŁEM, ŻEBY BYŁO SPÓJNIE -->
+            <a href="delete-article.php?id=<?= $article['id']; ?>">Delete article</a>
     <?php endif; ?>
  <?php require 'includes/footer.php' ?>
