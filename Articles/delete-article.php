@@ -3,6 +3,7 @@
 require 'includes/db_connection.php';
 require 'includes/article-functions.php';
 require 'includes/url.php';
+require 'includes/auth.php';
 
 session_start();
 $conn = getDBconn();
@@ -58,9 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php require 'includes/header.php'; ?>
 
-<h2>Delete article</h2>
+<h3><a href="Index.php">Main page</a></h3>
 
-<?php if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']): ?>
+<?php if (isLoggedIn()): ?>
 <form method="post">
   <p>Are you sure you want to delete this article?</p>
   <button>Delete</button>

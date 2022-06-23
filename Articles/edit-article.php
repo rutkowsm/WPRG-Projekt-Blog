@@ -3,6 +3,7 @@
 require 'includes/db_connection.php';
 require 'includes/article-functions.php';
 require 'includes/url.php';
+require 'includes/auth.php';
 
 session_start();
 
@@ -87,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!-- SPRAWDZANIE CZY UŻYTKOWNIK JEST ZALOGOWANY  -->
 
-<?php if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']): ?>
+<?php if (isLoggedIn()): ?>
   <h2>Edit article</h2>
   <?php require 'includes/article-form.php'; ?>
 <?php else: ?>
