@@ -4,6 +4,7 @@ require 'includes/db_connection.php';
 require 'includes/article-functions.php';
 require 'includes/url.php';
 
+session_start();
 $conn = getDBconn();
 
 if (isset($_GET['id'])) {
@@ -13,7 +14,7 @@ if (isset($_GET['id'])) {
   if ($article) {
 
     $id = $article['id'];
-    
+
   }
 
   else {
@@ -59,10 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <h2>Delete article</h2>
 
+<?php if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']): ?>
 <form method="post">
   <p>Are you sure you want to delete this article?</p>
   <button>Delete</button>
   <a href="article.php?id=<?= $article['id']; ?>">Cancel</a>
 </form>
+<?php else: ?>
+  <a href="/Articles/login.php">Log in </a> to access author panel <br>
+<?php endif; ?>
 
 <?php require 'includes/footer.php'; ?>

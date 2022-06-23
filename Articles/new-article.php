@@ -4,6 +4,8 @@ require 'includes/db_connection.php';
 require 'includes/article-functions.php';
 require 'includes/url.php';
 
+session_start();
+
 $title = '';
 $content = '';
 $published_at = '';
@@ -65,7 +67,13 @@ $published_at = '';
 
 <h3><a href="Index.php">Main page</a></h3>
 
-<h2>New article</h2>
-<?php require 'includes/article-form.php'; ?>
+<!-- SPRAWDZANIE CZY UŻYTKOWNIK JEST ZALOGOWANY  -->
+
+<?php if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']): ?>
+  <h2>New article</h2>
+  <?php require 'includes/article-form.php'; ?>
+<?php else: ?>
+  <a href="/Articles/login.php">Log in </a> to access author panel <br>
+<?php endif; ?>
 
 <?php require 'includes/footer.php' ?>

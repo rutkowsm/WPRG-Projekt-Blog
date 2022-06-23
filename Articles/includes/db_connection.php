@@ -8,7 +8,7 @@
 
 function getDBconn(){
   $db_host = 'localhost';
-  $db_name = 'cms_press';
+  $db_name = 'cms_store';
   $db_user = 'admin';
   $db_pass = 'adminpass';
 
