@@ -15,7 +15,7 @@ $sql = "SELECT
           concat(substr(content, 1, 200), '...[read more]') as content,
           published_at
         FROM article
-        where published_at < sysdate()
+        where published_at >= sysdate()
         order by published_at desc";
 
 $results = mysqli_query($conn, $sql);
@@ -31,16 +31,14 @@ else {
  <!-- HEADER HTML -->
  <?php require 'includes/header.php' ?>
 
+ <h3><a href="Index.php">Main page</a></h3>
+
  <!-- LOGOWANIE -->
  <?php if (isLoggedIn()): ?>
    <p>Welcome to the author panel.</p> <a href="logout.php">Log out</a>
    <br><br>
    <form action="new-article.php">
      <input type="submit" value="Add new article">
-   </form>
-   <br>
-   <form action="scheduled-articles.php">
-     <input type="submit" value="View scheduled articles">
    </form>
  <?php else: ?>
    <a href="login.php">Log in</a>
@@ -54,6 +52,7 @@ else {
  <header>
    <h1>List of articles</h1>
  </header>
+  <?php if (isLoggedIn()): ?>
       <?php if (empty($articles)): ?>
         <p>No articles found</p>
       <?php else: ?>
@@ -71,6 +70,9 @@ else {
         <?php endforeach;  ?>
       </ul>
     <?php endif; ?>
+  <?php else: ?>
+    <a href="/Articles/login.php">Log in </a> to access author panel <br>
+  <?php endif; ?>
 
   <!-- FOOTER -->
 <?php require 'includes/footer.php' ?>
